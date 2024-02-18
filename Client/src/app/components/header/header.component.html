@@ -1,0 +1,169 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button class="mx-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling"><i class="fa fa-bars"></i></button>
+
+        <a href="#" class="logo">
+            <img src="../../../assets/images/logo.png" alt="" class=""
+                style="width: 250px; position: absolute; top: -200%;">
+        </a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            </ul>
+            <div class="navbar-nav dropstart d-flex">
+                <a class="nav-link dropdown-toggle me-2" href="#" id="navbarDropdown" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-user-o fa-2x"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#logout"><i
+                                class="fa fa-sign-out"></i> Logout</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                            data-bs-target="#changePassword"><i class="fa fa-sign-out"></i>Change Password</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</nav> -->
+
+<div class="bg-image"></div>
+
+<div class="wrapper sticky" style="z-index: 1200;">
+    <nav class="navbar-fixed-top">
+        <button class="mx-3" style="z-index: 1000;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling"><i class="fa fa-bars"></i></button>
+
+        <a href="#" class="logo">
+            <img src="../../../assets/images/logo.png" alt="" class=""
+                style="width: 250px; position: absolute; top: -9%;left: 1%;">
+        </a>
+
+        <div class="navbar-nav dropstart d-flex">
+            <a class="nav-link dropdown-toggle me-2" href="#" id="navbarDropdown" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-user-o fa-2x"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#logout"><i
+                            class="fa fa-sign-out"></i> Logout</a></li>
+                <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#changePassword"><i
+                            class="fa fa-password"></i>Change Password</a></li>
+            </ul>
+        </div>
+
+    </nav>
+</div>
+
+<div class="offcanvas offcanvas-start" style="background-color: #C6C6C6;" data-bs-scroll="true" data-bs-backdrop="false"
+    tabindex="-100" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul appAccordion>
+            <li class="li" appAccordionLink *ngFor='let menuItem of menuItems.getMenuitem()'
+                [routerLinkActive]="['selected']">
+                <a class="list" appAccordionToggle [routerLink]="['', menuItem.state]"
+                    *ngIf="menuItem.type === 'link' && (menuItem.role === '' || menuItem.role === userRole)">
+                    <i class="{{menuItem.icon}}"></i>
+                    <span>{{menuItem.name}}</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to {{data.message}}
+            </div>
+            <button data-bs-dismiss="modal" aria-label="Close" color="primary" (click)="logout()">
+                Yes
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div>
+                <form class="modal-body" [formGroup]="changePasswordForm">
+
+                    <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label"> Old Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" formControlName="oldPassword">
+                            <div
+                                *ngIf="changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid">
+                                <span *ngIf="changePasswordForm.controls.oldPassword.errors.required">This field is
+                                    mandatory.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label"> new Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" formControlName="newPassword">
+                            <div
+                                *ngIf="changePasswordForm.controls.newPassword.touched && changePasswordForm.controls.newPassword.invalid">
+                                <span *ngIf="changePasswordForm.controls.newPassword.errors.required">This field is
+                                    mandatory.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label"> Confirm new password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" formControlName="confirmPassword">
+                            <div
+                                *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.invalid">
+                                <span *ngIf="changePasswordForm.controls.confirmPassword.errors.required">This field is
+                                    mandatory.</span>
+                            </div>
+                            <div *ngIf="validatorSubmit() && !(changePasswordForm.controls.confirmPassword.invalid)">
+                                <span>New Password & Confirm Password does not match.</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button data-bs-dismiss="modal" type="submit" aria-label="Close" color="primary"
+                    [disabled]="validatorSubmit() || !(changePasswordForm.valid && changePasswordForm.dirty)"
+                    (click)="handlePasswordChangeSubmit()">
+                    Yes
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
+</script>

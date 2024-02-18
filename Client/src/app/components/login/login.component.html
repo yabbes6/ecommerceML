@@ -1,0 +1,33 @@
+
+<div class="card">
+    <div class="card-body">
+        <div>
+            <h1>LOGIN</h1>
+        </div>
+        <div class="form">
+            <form [formGroup]="loginForm">
+                <div class="sousformcontrol" >
+
+                    <input type="text" placeholder="Email" formControlName="email" class="form-control" required>
+                    <div *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+                        <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
+                        <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid.</span>
+                    </div>
+                </div>
+                <div class="sousformcontrol" >
+                    <input type="password" placeholder="Password" formControlName="password" class="form-control"
+                        required>
+                    <div *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                        <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory.</span>
+                    </div>
+                </div>
+            </form>
+            <button class="btn" type="submit" (click)="handleSubmit()"
+                [disabled]="!(loginForm.valid && loginForm.dirty)">
+                Login
+            </button>
+            <button class="btn btn-secondary" (click)="cancelLogin()">Close</button>
+        </div>
+
+    </div>
+</div>

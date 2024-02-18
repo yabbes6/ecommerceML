@@ -1,0 +1,94 @@
+<app-header></app-header>
+
+<div class="card">
+    <div class="card-body">
+        <h2>Manage Order</h2>
+
+        <button class="btn btn-primary offset-11" [disabled]="validateSubmit()" (click)="submitAction">
+            <i class="fa fa-print mx-2"></i>Submit & Bill
+        </button>
+    </div>
+
+</div>
+
+<div class="card mx-5 mb-3">
+    <div class="card-header">
+        <h3>Customer Details : </h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="manageOrderForm">
+            <div class="row mb-3">
+                <div class="col-4">
+                    <input type="text" formControlName="name" class="form-control" placeholder="Name">
+                    <div *ngIf="manageOrderForm.controls.name.touched && manageOrderForm.controls.name.invalid">
+                        <span *ngIf="manageOrderForm.controls.name.errors.required">This field is mandatory.</span>
+                        <span *ngIf="manageOrderForm.controls.name.errors.pattern">This field is invalid.</span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <input type="text" formControlName="email" class="form-control" placeholder="Email">
+                    <div *ngIf="manageOrderForm.controls.email.touched && manageOrderForm.controls.email.invalid">
+                        <span *ngIf="manageOrderForm.controls.email.errors.required">This field is mandatory.</span>
+                        <span *ngIf="manageOrderForm.controls.email.errors.pattern">This field is invalid.</span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <input type="text" formControlName="contactNumber" class="form-control"
+                        placeholder="Contact number">
+                    <div
+                        *ngIf="manageOrderForm.controls.contactNumber.touched && manageOrderForm.controls.contactNumber.invalid">
+                        <span *ngIf="manageOrderForm.controls.contactNumber.errors.required">This field is
+                            mandatory.</span>
+                        <span *ngIf="manageOrderForm.controls.contactNumber.errors.pattern">This field is
+                            invalid.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                
+                <div class="col-4">
+                    <select formControlName="payementMethod" class="form-control" required>
+                        <option value="Cash">Cash</option>
+                        <option value="CreditCard">Credit Card</option>
+                        <option value="DeditCard">Dedit Card</option>
+                    </select>
+                    <div
+                        *ngIf="manageOrderForm.controls.payementMethod.touched && manageOrderForm.controls.payementMethod.invalid">
+                        <span *ngIf="manageOrderForm.controls.payementMethod.errors.required">This field is
+                            mandatory.</span>
+                        <span *ngIf="manageOrderForm.controls.payementMethod.errors.pattern">This field is
+                            invalid.</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card  mx-5 mb-3">
+    <div class="card-header">
+        <h3>Select Product:</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="manageOrderForm">
+            <div class="row mb-3">
+                <div class="col-4">
+                    <select formControlName="payementMethod"  class="form-control" required>
+                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    </select>
+                    <div
+                        *ngIf="manageOrderForm.controls.payementMethod.touched && manageOrderForm.controls.payementMethod.invalid">
+                        <span *ngIf="manageOrderForm.controls.payementMethod.errors.required">This field is
+                            mandatory.</span>
+                        <span *ngIf="manageOrderForm.controls.payementMethod.errors.pattern">This field is
+                            invalid.</span>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+
+    </div>
+</div>

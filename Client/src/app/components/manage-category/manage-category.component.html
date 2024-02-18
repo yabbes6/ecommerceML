@@ -1,0 +1,93 @@
+<app-header></app-header>
+
+<div class="card">
+    <div class="card-body">
+        <h1>Manage Category</h1>
+        <button class="btn1" data-bs-toggle="modal" data-bs-target="#addCategory">Add
+            Category</button>
+
+        <div class="card1">
+            <div class="card-body">
+                <div class="card-title" style="font-size: 22px;">Filter</div>
+                <input type="text" class="form-control" tyle="font-size: 22px;" (keyup)="applyFilter($event)">
+                <div class="table">
+                    <table mat-table [dataSource]="datasource">
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef>Name</th>
+                            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef>Action</th>
+                            <td mat-cell *matCellDef="let element" class="Action-link">
+                                <button class="btn btn2 btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#editCategory"><i class="fa fa-edit"></i></button>
+
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="['name', 'action']"></tr>
+                        <tr mat-row *matRowDef="let row; columns: ['name', 'action']"
+                            (click)="selectCategory(row.id,row.name)">
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class="modal-body" [formGroup]="nameForm">
+                        <div class="mb-3">
+                            <div>
+                                <input type="text" class="form-control" formControlName="name" placeholder="Name"
+                                    style="font-size:25px; margin: 5px;" required>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <button class="btn btn3 btn-secondary col-5" data-bs-dismiss="modal" aria-label="Close"
+                            (click)="handleAddAction()" [disabled]="!validation()">
+                            <i class="fa fa-save"></i> Save
+                        </button>
+                        <button class="btn btn33 btn-secondary col-5" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times"></i> Cancel
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class="modal-body" [formGroup]="nameForm">
+                        <div class="mb-3">
+                            <div>
+                                <input type="text" class="form-control" placeholder="Name"
+                                    style="font-size:25px; margin: 5px;" formControlName="name" [value]="nameselect"
+                                    required>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <button class="btn btn3 btn-secondary col-5" data-bs-dismiss="modal" aria-label="Close"
+                            (click)="handleEditAction()">
+                            <i class="fa fa-save"></i> Save
+                        </button>
+                        <button class="btn btn33 btn-secondary col-5" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times"></i> Cancel
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

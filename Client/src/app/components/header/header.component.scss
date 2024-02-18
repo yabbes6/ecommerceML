@@ -1,0 +1,60 @@
+span {
+    color: red;
+    font-weight: 500;
+}
+
+.list {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+
+}
+
+.list span {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    margin-left: 20px;
+
+}
+
+.li {
+    margin-top: 30px;
+}
+
+
+.mx-3{
+    color: black;
+    background-color: transparent;
+    font-size: 22px;
+    border: 0px;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+.wrapper {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    background-color: #E2E2E2;
+  }
+  
+  nav {
+    display: flex;
+    width: 100%;
+  }
+  
+  .navbar-nav{
+    margin-left: 10em;
+  }
+  
+  a.logo {
+    margin-right: 87%;
+  }
+  
+  
+  

@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+<body>
+    <div class="card">
+        <div class="card-body row">
+            <h1>Dashboard</h1>
+            <div class="card1 col-3">
+                <div class="card-body">
+                    <div class="little">
+                        <h2>Total Category:</h2>
+                        <h2 class="title">{{data?.category}}</h2>
+                    </div>
+                    <button class="btn" [routerLink]="['/category']">View
+                        Category</button>
+                </div>
+
+            </div>
+            <div class="card1 col-3">
+                <div class="card-body">
+                    <div class="little">
+                        <h2>Total Product:</h2>
+                        <h2 class="title">{{data?.product}}</h2>
+                    </div>
+                    <button class="btn" [routerLink]="['/product']">View
+                        Product</button>
+                </div>
+
+            </div>
+            <div class="card1 col-3">
+
+                <div class="card-body">
+                    <div class="little">
+                        <h2>Total Bill:</h2>
+                        <h2 class="title">{{data?.bill}}</h2>
+                    </div>
+                    <button class="btn" [routerLink]="['/bill']">View Bill</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>

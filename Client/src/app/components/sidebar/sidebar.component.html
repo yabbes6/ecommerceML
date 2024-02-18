@@ -1,0 +1,11 @@
+<div>
+    <ul appAccordion>
+        <li appAccordionLink *ngFor='let menuItem of menuItems.getMenuitem()' [routerLinkActive]="['selected']">
+            <a class="" appAccordionToggle [routerLink]="['', menuItem.state]"
+                *ngIf="menuItem.type === 'link' && (menuItem.role === '' || menuItem.role === userRole)">
+                <mat-icon>{{menuItem.icon}}</mat-icon>
+                <span>{{menuItem.name}}</span>
+            </a>
+        </li>
+    </ul>
+</div>
